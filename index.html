@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Caveat:wght@600;700&amp;family=Gaegu:wght@700&amp;family=Playfair+Display:ital,wght@1,400;1,600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.font-handwriting{font-family:'Caveat',cursive,sans-serif;}.font-doodle{font-family:'Gaegu',cursive,sans-serif;}.pastel-gingham{background-color:#ffe8ee;background-image:linear-gradient(90deg,rgba(255,175,190,0.35) 50%,transparent 50%),linear-gradient(rgba(255,175,190,0.35) 50%,transparent 50%);background-size:24px 24px;}.tape-washi{background:repeating-linear-gradient(45deg,rgba(255,255,255,0.45),rgba(255,255,255,0.45) 6px,transparent 6px,transparent 12px);}.sticker-shadow{filter:drop-shadow(0 6px 14px rgba(220,95,142,0.25));}.sticker-pop{filter:drop-shadow(0 8px 16px rgba(214,51,132,0.22));transition:transform 0.2s ease;}.sticker-pop:hover{transform:scale(1.06) rotate(3deg);}.icing-shadow{filter:drop-shadow(0 10px 18px rgba(244,114,182,0.38));}.frosted-card{background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}.floating-petal{position:fixed;left:0;top:-20px;pointer-events:none;z-index:40;user-select:none;opacity:0;animation:petal-fall linear infinite}.soft-glow{box-shadow:0 0 18px rgba(255,195,218,0.8)}.sparkle-orb{position:absolute;inset:auto;pointer-events:none;z-index:28;animation:sparkle-breathe 2.2s ease-in-out infinite}
+/* Gift Box Styles & Animations */
+.gift-box-wrapper{perspective:800px;}
+.gift-lid{transition:transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;transform-origin:top center;}
+.gift-box-wrapper.opened .gift-lid{transform:translateY(-55px) rotate(-14deg) scale(1.08);}
+.gift-bouquet{transform:translate(-50%, 65px) scale(0.2);opacity:0;transition:transform 0.75s cubic-bezier(0.2, 1.25, 0.4, 1), opacity 0.4s ease;pointer-events:none;}
+.gift-box-wrapper.opened .gift-bouquet{transform:translate(-50%, -60px) scale(1);opacity:1;pointer-events:auto;}
+@keyframes bouquet-bounce{0%,100%{transform:translate(-50%, -60px) scale(1) rotate(0deg);}50%{transform:translate(-50%, -64px) scale(1.03) rotate(1.5deg);}}
+.gift-box-wrapper.opened .gift-bouquet{animation:bouquet-bounce 3.5s ease-in-out infinite 0.75s;}
+@keyframes petal-fall{0%{transform:translate3d(0,0,0) rotate(0deg) scale(.8);opacity:0}12%{opacity:1}100%{transform:translate3d(var(--x-drift,60px),115vh,0) rotate(var(--rot,240deg)) scale(1.15);opacity:0}}@keyframes sparkle-breathe{0%,100%{transform:scale(.9);opacity:.6}50%{transform:scale(1.2);opacity:1}}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "outline": "#87717a", "primary": "#a43073", "on-secondary-fixed": "#211b00", "surface-dim": "#e4d7d8", "on-primary": "#ffffff", "on-background": "#211a1b", "on-secondary-container": "#726200", "primary-fixed-dim": "#ffafd3", "on-error": "#ffffff", "surface-tint": "#a43073", "inverse-on-surface": "#fbedee", "on-surface": "#211a1b", "tertiary-fixed": "#f0dbff", "primary-fixed": "#ffd8e7", "tertiary-fixed-dim": "#ddb8ff", "surface-container-low": "#fef0f1", "primary-container": "#f472b6", "on-primary-fixed": "#3d0026", "error": "#ba1a1a", "on-tertiary-fixed-variant": "#62259b", "on-surface-variant": "#544249", "surface-variant": "#eddfe0", "on-primary-fixed-variant": "#85145a", "surface-container-high": "#f3e5e6", "on-secondary": "#ffffff", "tertiary": "#7b41b4", "on-secondary-fixed-variant": "#524600", "surface-container": "#f8ebec", "tertiary-container": "#c084fc", "on-tertiary": "#ffffff", "background": "#fff0f3", "on-tertiary-container": "#500989", "outline-variant": "#dac0c9", "secondary": "#6d5e00", "secondary-fixed": "#ffe24c", "on-error-container": "#93000a", "inverse-primary": "#ffafd3", "on-primary-container": "#6d0047", "inverse-surface": "#362e30", "surface": "#fff0f3", "secondary-container": "#fcdf46", "error-container": "#ffdad6", "surface-container-highest": "#eddfe0", "secondary-fixed-dim": "#e2c62d", "surface-container-lowest": "#ffffff", "surface-bright": "#fff0f3", "on-tertiary-fixed": "#2c0051" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-md": "1rem", "margin": "2rem", "gutter-mobile": "0.75rem", "gutter": "1.25rem", "margin-mobile": "1rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem" }, fontFamily: { "body-sm": ["Plus Jakarta Sans"], "headline-xl": ["Comfortaa"], "headline-xl-mobile": ["Comfortaa"], "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-sm": ["Comfortaa"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Comfortaa"], "label-lg": ["Plus Jakarta Sans"], "headline-md": ["Comfortaa"], "headline-lg": ["Comfortaa"] }, fontSize: { "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "700" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }], "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }] } } } };</script></head><body class="pastel-gingham font-body-md text-body-md text-on-surface flex flex-col min-h-screen relative overflow-x-hidden items-center justify-start bg-[#ffe8ee]"><header class="w-full max-w-[393px] z-50 pt-12 pb-2 bg-[#fff0f3]/90 backdrop-blur-xl border-b border-primary-container/40 shadow-[0_4px_16px_rgba(244,114,182,0.18)]"><div class="h-14 px-4 flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5"><span class="text-primary font-headline-sm text-headline-sm font-bold tracking-tight truncate">Happy Anniversary!</span><span class="text-xs">💍✨</span></div><span class="text-on-surface-variant font-label-sm text-label-sm truncate font-medium">Cherishing Our Beautiful Journey 💕</span></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Play Love You audio and celebration sparks" class="w-10 h-10 rounded-full flex items-center justify-center text-primary bg-white/90 hover:bg-white transition-transform active:scale-90 shadow-sm border border-primary-fixed" id="sparkle-top-btn"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">favorite</span></button></div></div></header><main class="flex flex-col relative w-full max-w-[393px] mx-auto pt-8 pb-12 min-h-screen overflow-x-hidden shadow-2xl"><div class="flex flex-col w-full relative overflow-hidden px-4 gap-space-lg select-none pb-8">
+<div class="pointer-events-none fixed inset-0 z-30 overflow-hidden" id="confetti-container"></div>
+<!-- Decorative doodles and stickers -->
+<div class="pointer-events-none absolute inset-0 overflow-hidden select-none z-0">
+<!-- Multi-layered Pastel Pink Heart Radar / Ripples behind hero -->
+<div class="absolute top-24 -left-16 w-72 h-72 opacity-45 pointer-events-none">
+<svg class="w-full h-full" viewbox="0 0 200 200">
+<path d="M100,170 C100,170 30,120 30,65 C30,35 55,20 80,35 C90,42 100,55 100,55 C100,55 110,42 120,35 C145,20 170,35 170,65 C170,120 100,170 100,170 Z" fill="#ffb4c6" opacity="0.3"></path>
+<path d="M100,150 C100,150 45,110 45,68 C45,44 65,32 84,44 C92,50 100,60 100,60 C100,60 108,50 116,44 C135,32 155,44 155,68 C155,110 100,150 100,150 Z" fill="#ffd1dc" opacity="0.5"></path>
+<path d="M100,130 C100,130 60,98 60,70 C60,52 75,44 88,52 C94,56 100,65 100,65 C100,65 106,56 112,52 C125,44 140,52 140,70 C140,98 100,130 100,130 Z" fill="#ffe5ec" opacity="0.7"></path>
+</svg>
+</div>
+<!-- Waffle Ice Cream Cone (Top Right) -->
+<div class="absolute top-20 right-1 transform rotate-12 sticker-pop z-10">
+<svg class="w-20 h-28 drop-shadow-lg" viewbox="0 0 100 140">
+<polygon fill="#e0a96d" points="26,72 74,72 50,135" stroke="#c48a4d" stroke-width="2"></polygon>
+<line stroke="#c48a4d" stroke-width="1.5" x1="34" x2="62" y1="84" y2="120"></line>
+<line stroke="#c48a4d" stroke-width="1.5" x1="44" x2="56" y1="74" y2="132"></line>
+<line stroke="#c48a4d" stroke-width="1.5" x1="66" x2="38" y1="84" y2="120"></line>
+<line stroke="#c48a4d" stroke-width="1.5" x1="56" x2="44" y1="74" y2="132"></line>
+<path d="M22,72 C18,65 20,44 32,34 C42,26 58,26 68,34 C80,44 82,65 78,72 C74,76 70,72 66,74 C60,76 58,72 50,74 C42,72 40,76 34,74 C30,72 26,76 22,72 Z" fill="#ffffff" stroke="#fbcfe8" stroke-width="3"></path>
+<rect fill="#f472b6" height="7" rx="1.5" transform="rotate(25 36 44)" width="3" x="36" y="44"></rect>
+<rect fill="#ffe24c" height="7" rx="1.5" transform="rotate(-30 52 38)" width="3" x="52" y="38"></rect>
+<rect fill="#c084fc" height="7" rx="1.5" transform="rotate(15 62 50)" width="3" x="62" y="50"></rect>
+<rect fill="#60a5fa" height="6" rx="1.5" transform="rotate(45 44 56)" width="3" x="44" y="56"></rect>
+<path d="M50,22 Q58,10 65,8" fill="none" stroke="#65a30d" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="50" cy="22" fill="#f43f5e" r="10" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="47" cy="19" fill="#ffffff" r="2.5"></circle>
+</svg>
+</div>
+<!-- Frosted Donut (Top Left) -->
+<div class="absolute top-24 left-1 transform -rotate-12 sticker-pop z-10">
+<svg class="w-18 h-18 drop-shadow-lg" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="#f3b07c" r="46" stroke="#ffffff" stroke-width="3"></circle>
+<path d="M50,8 C73,8 92,27 92,50 C92,62 86,66 82,60 C78,54 72,66 66,74 C60,82 52,78 48,84 C42,92 34,88 28,90 C16,84 8,70 8,50 C8,27 27,8 50,8 Z" fill="#ff85a2" stroke="#ffffff" stroke-width="2"></path>
+<circle cx="50" cy="50" fill="#ffe8ee" r="16" stroke="#ffffff" stroke-width="3"></circle>
+<rect fill="#ffe24c" height="9" rx="2" transform="rotate(20 34 24)" width="4" x="34" y="24"></rect>
+<rect fill="#ffffff" height="9" rx="2" transform="rotate(-35 64 26)" width="4" x="64" y="26"></rect>
+<rect fill="#c084fc" height="9" rx="2" transform="rotate(15 74 48)" width="4" x="74" y="48"></rect>
+<rect fill="#ffe24c" height="8" rx="2" transform="rotate(50 22 52)" width="4" x="22" y="52"></rect>
+</svg>
+</div>
+<!-- Aesthetic Note "stop worrying about things you can't control" -->
+<div class="absolute top-[370px] -left-3 transform -rotate-6 sticker-pop z-10">
+<div class="relative bg-[#ffdce5] border-2 border-white shadow-xl rounded-2xl p-3 w-48 text-center">
+<div class="absolute -top-7 left-1/2 -translate-x-1/2 flex items-center justify-center">
+<svg class="w-24 h-10 text-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.9)]" fill="currentColor" viewbox="0 0 120 45">
+<path d="M60,35 C48,28 30,12 5,18 C15,28 32,32 45,34 C30,36 15,38 8,42 C25,44 48,40 60,35 Z"></path>
+<path d="M60,35 C72,28 90,12 115,18 C105,28 88,32 75,34 C90,36 105,38 112,42 C95,44 72,40 60,35 Z"></path>
+</svg>
+</div>
+<p class="font-['Playfair_Display'] italic text-[11px] text-[#8e295b] font-semibold leading-tight pt-1">
+        “stop worrying about things you can't control”
+      </p>
+<div class="absolute -bottom-3 right-3 text-lg drop-shadow-sm">🎀</div>
+<span class="absolute top-1 right-2 text-xs">✨</span>
+</div>
+</div>
+<!-- Fluffy White Round Teddy Bear Head -->
+<div class="absolute top-[440px] -right-3 transform rotate-8 sticker-pop z-10">
+<div class="flex flex-col items-center">
+<span class="font-doodle text-base font-bold text-[#f472b6] tracking-wider transform -rotate-12 mb-[-6px]">happy ♡</span>
+<svg class="w-18 h-18 drop-shadow-md" viewbox="0 0 100 95">
+<circle cx="24" cy="24" fill="#ffffff" r="16" stroke="#fbcfe8" stroke-width="2.5"></circle>
+<circle cx="76" cy="24" fill="#ffffff" r="16" stroke="#fbcfe8" stroke-width="2.5"></circle>
+<circle cx="50" cy="52" fill="#ffffff" r="38" stroke="#fbcfe8" stroke-width="3"></circle>
+<circle cx="36" cy="48" fill="#4a3b32" r="3.5"></circle>
+<circle cx="64" cy="48" fill="#4a3b32" r="3.5"></circle>
+<ellipse cx="28" cy="55" fill="#ffb4a2" opacity="0.8" rx="8" ry="6"></ellipse>
+<ellipse cx="72" cy="55" fill="#ffb4a2" opacity="0.8" rx="8" ry="6"></ellipse>
+<ellipse cx="50" cy="56" fill="#fde2e4" rx="5" ry="3.5"></ellipse>
+<circle cx="50" cy="54" fill="#4a3b32" r="2.2"></circle>
+<path d="M47,57 Q50,60 53,57" fill="none" stroke="#4a3b32" stroke-linecap="round" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<!-- Cute Brown Bear with paws (Near Memory 1) -->
+<div class="absolute top-[680px] -left-4 transform -rotate-6 sticker-pop z-10">
+<div class="relative bg-[#ffffff]/90 border-2 border-[#fbcfe8] rounded-3xl p-1.5 shadow-lg">
+<svg class="w-22 h-20 drop-shadow-sm" viewbox="0 0 110 100">
+<ellipse cx="18" cy="62" fill="#e6b89c" rx="10" ry="8" stroke="#ffffff" stroke-width="2"></ellipse>
+<circle cx="16" cy="60" fill="#ffffff" r="3"></circle>
+<ellipse cx="92" cy="62" fill="#e6b89c" rx="10" ry="8" stroke="#ffffff" stroke-width="2"></ellipse>
+<circle cx="94" cy="60" fill="#ffffff" r="3"></circle>
+<circle cx="28" cy="26" fill="#d49b7a" r="14" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="28" cy="26" fill="#fbd1b7" r="7"></circle>
+<circle cx="82" cy="26" fill="#d49b7a" r="14" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="82" cy="26" fill="#fbd1b7" r="7"></circle>
+<ellipse cx="55" cy="52" fill="#d49b7a" rx="38" ry="32" stroke="#ffffff" stroke-width="2"></ellipse>
+<ellipse cx="55" cy="58" fill="#fce4d6" rx="14" ry="10"></ellipse>
+<ellipse cx="55" cy="54" fill="#4a3b32" rx="4" ry="2.5"></ellipse>
+<path d="M51,57 Q55,61 59,57" fill="none" stroke="#4a3b32" stroke-linecap="round" stroke-width="1.8"></path>
+<circle cx="40" cy="48" fill="#4a3b32" r="3.5"></circle>
+<circle cx="70" cy="48" fill="#4a3b32" r="3.5"></circle>
+<circle cx="32" cy="56" fill="#ff8fa3" opacity="0.75" r="5"></circle>
+<circle cx="78" cy="56" fill="#ff8fa3" opacity="0.75" r="5"></circle>
+</svg>
+<div class="text-center font-doodle text-[10px] text-[#a43073] font-bold">bear cuddles ♡</div>
+</div>
+</div>
+<!-- TWO PLUMP WHITE BEARS HUGGING WITH FLOATING RED HEART -->
+<div class="absolute top-[820px] -right-3 transform rotate-6 sticker-pop z-10">
+<div class="bg-white/95 border-2 border-[#fbcfe8] rounded-3xl p-2 shadow-xl flex flex-col items-center">
+<svg class="w-6 h-6 text-[#ef4444] animate-bounce mb-[-4px]" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+</svg>
+<svg class="w-24 h-24" viewbox="0 0 120 110">
+<ellipse cx="60" cy="100" fill="#f3d2dc" rx="42" ry="7"></ellipse>
+<circle cx="32" cy="38" fill="#ffffff" r="8" stroke="#362e30" stroke-width="1.8"></circle>
+<circle cx="50" cy="38" fill="#ffffff" r="8" stroke="#362e30" stroke-width="1.8"></circle>
+<ellipse cx="40" cy="52" fill="#ffffff" rx="20" ry="18" stroke="#362e30" stroke-width="2"></ellipse>
+<ellipse cx="40" cy="78" fill="#ffffff" rx="20" ry="20" stroke="#362e30" stroke-width="2"></ellipse>
+<circle cx="35" cy="50" fill="#362e30" r="2.2"></circle>
+<circle cx="48" cy="48" fill="#362e30" r="2.2"></circle>
+<circle cx="70" cy="38" fill="#ffffff" r="8" stroke="#362e30" stroke-width="1.8"></circle>
+<circle cx="88" cy="38" fill="#ffffff" r="8" stroke="#362e30" stroke-width="1.8"></circle>
+<ellipse cx="80" cy="52" fill="#ffffff" rx="20" ry="18" stroke="#362e30" stroke-width="2"></ellipse>
+<ellipse cx="80" cy="78" fill="#ffffff" rx="20" ry="20" stroke="#362e30" stroke-width="2"></ellipse>
+<circle cx="72" cy="48" fill="#362e30" r="2.2"></circle>
+<circle cx="85" cy="50" fill="#362e30" r="2.2"></circle>
+<path d="M52,65 Q60,62 68,66" fill="none" stroke="#362e30" stroke-linecap="round" stroke-width="2.5"></path>
+</svg>
+<span class="font-handwriting text-xs text-[#a43073] font-bold mt-[-2px]">always together ♡</span>
+</div>
+</div>
+<!-- Sundae Cup with Tricolor Ice Cream Scoops -->
+<div class="absolute top-[1020px] -left-3 transform -rotate-12 sticker-pop z-10">
+<svg class="w-20 h-26 drop-shadow-lg" viewbox="0 0 100 120">
+<polygon fill="#ffb4c6" points="24,66 76,66 68,110 32,110" stroke="#ffffff" stroke-width="3"></polygon>
+<rect fill="#ffffff" height="8" rx="4" stroke="#fbcfe8" stroke-width="2" width="60" x="20" y="60"></rect>
+<circle cx="64" cy="50" fill="#c084fc" r="16" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="50" cy="46" fill="#fde047" r="16" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="36" cy="44" fill="#f472b6" r="15" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="44" cy="24" fill="#ef4444" r="7" stroke="#ffffff" stroke-width="1.5"></circle>
+</svg>
+</div>
+<!-- White Kitty Face with Cheeks -->
+<div class="absolute top-[1200px] -right-3 transform rotate-6 sticker-pop z-10">
+<div class="bg-white/95 border-2 border-[#ffccd5] rounded-3xl p-2 shadow-xl flex flex-col items-center">
+<svg class="w-18 h-15" viewbox="0 0 100 80">
+<polygon fill="#ffffff" points="18,34 30,8 44,26" stroke="#ffccd5" stroke-width="2"></polygon>
+<polygon fill="#ffb4c6" points="24,30 32,14 40,26"></polygon>
+<polygon fill="#ffffff" points="82,34 70,8 56,26" stroke="#ffccd5" stroke-width="2"></polygon>
+<polygon fill="#ffb4c6" points="76,30 68,14 60,26"></polygon>
+<ellipse cx="50" cy="48" fill="#ffffff" rx="42" ry="30" stroke="#ffccd5" stroke-width="2.5"></ellipse>
+<ellipse cx="34" cy="44" fill="#362e30" rx="4" ry="5.5"></ellipse>
+<circle cx="32.5" cy="42" fill="#ffffff" r="1.5"></circle>
+<ellipse cx="66" cy="44" fill="#362e30" rx="4" ry="5.5"></ellipse>
+<circle cx="64.5" cy="42" fill="#ffffff" r="1.5"></circle>
+<ellipse cx="24" cy="52" fill="#ff8fa3" opacity="0.85" rx="7" ry="4.5"></ellipse>
+<ellipse cx="76" cy="52" fill="#ff8fa3" opacity="0.85" rx="7" ry="4.5"></ellipse>
+<path d="M44,52 Q47,56 50,52 Q53,56 56,52" fill="none" stroke="#362e30" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<div class="flex items-center gap-1 mt-1 bg-[#ffe5ec] px-2 py-0.5 rounded-full border border-pink-200">
+<span class="font-doodle text-[10px] text-primary font-bold">meow ♡</span>
+</div>
+</div>
+</div>
+<!-- Kawaii White Standing Kitty with Bow (Left) -->
+<div class="absolute top-[1480px] -left-3 transform rotate-3 sticker-pop z-10">
+<div class="bg-[#ff85a2] p-2 rounded-2xl shadow-xl border-2 border-white flex flex-col items-center">
+<svg class="w-20 h-26" viewbox="0 0 100 120">
+<ellipse cx="50" cy="74" fill="#ffffff" rx="26" ry="32" stroke="#ffffff" stroke-width="2"></ellipse>
+<ellipse cx="50" cy="40" fill="#ffffff" rx="30" ry="24"></ellipse>
+<polygon fill="#ffffff" points="26,30 32,10 44,24"></polygon>
+<polygon fill="#ffffff" points="74,30 68,10 56,24"></polygon>
+<circle cx="40" cy="38" fill="#362e30" r="2.5"></circle>
+<circle cx="60" cy="38" fill="#362e30" r="2.5"></circle>
+<path d="M26,52 Q50,62 74,52" fill="none" stroke="#93c5fd" stroke-linecap="round" stroke-width="5"></path>
+<ellipse cx="50" cy="80" fill="#ffd6e0" rx="14" ry="18"></ellipse>
+</svg>
+<span class="font-doodle text-white text-xs font-bold -mt-1">Love cat ♡</span>
+</div>
+</div>
+<!-- Lucky Card with White Cat Peeking + Blue Fish -->
+<div class="absolute top-[1780px] -right-3 transform -rotate-6 sticker-pop z-10">
+<div class="flex flex-col gap-1 items-end">
+<div class="relative bg-[#ff85a2] text-white px-4 pt-3 pb-1.5 rounded-2xl shadow-xl border-2 border-white text-center">
+<div class="absolute -top-5 left-1/2 -translate-x-1/2">
+<svg class="w-12 h-7" viewbox="0 0 60 35">
+<polygon fill="#ffffff" points="8,20 15,2 26,14"></polygon>
+<polygon fill="#ffffff" points="52,20 45,2 34,14"></polygon>
+<ellipse cx="30" cy="22" fill="#ffffff" rx="24" ry="14"></ellipse>
+<path d="M20,18 Q23,20 26,18 M34,18 Q37,20 40,18" fill="none" stroke="#362e30" stroke-width="1.5"></path>
+</svg>
+</div>
+<span class="font-handwriting text-lg font-bold">Lucky ✨</span>
+</div>
+<div class="bg-white/95 border border-sky-200 rounded-xl px-2 py-1 shadow-md flex items-center gap-1.5 rotate-6">
+<svg class="w-8 h-5" viewbox="0 0 50 30">
+<polygon fill="#93c5fd" points="40,15 48,6 48,24"></polygon>
+<ellipse cx="24" cy="15" fill="#93c5fd" rx="18" ry="12"></ellipse>
+<circle cx="12" cy="12" fill="#1e3a8a" r="1.5"></circle>
+</svg>
+<span class="text-[9px] font-doodle text-sky-500 font-bold">🫧 bubble</span>
+</div>
+</div>
+</div>
+<!-- Pink Glitter Butterfly -->
+<div class="absolute top-[2100px] -left-3 transform -rotate-12 sticker-pop z-10">
+<div class="bg-white/95 border-2 border-pink-300 rounded-2xl p-2 shadow-xl flex flex-col items-center">
+<svg class="w-16 h-12 drop-shadow-sm" viewbox="0 0 80 60">
+<path d="M40,28 C30,10 10,8 10,24 C10,34 26,36 40,28 Z" fill="#f472b6" stroke="#ffffff" stroke-width="1.5"></path>
+<path d="M40,28 C50,10 70,8 70,24 C70,34 54,36 40,28 Z" fill="#f472b6" stroke="#ffffff" stroke-width="1.5"></path>
+<path d="M40,30 C30,34 16,36 20,48 C24,54 36,44 40,30 Z" fill="#ffb4c6"></path>
+<path d="M40,30 C50,34 64,36 60,48 C56,54 44,44 40,30 Z" fill="#ffb4c6"></path>
+<line stroke="#831843" stroke-linecap="round" stroke-width="2.5" x1="40" x2="40" y1="18" y2="46"></line>
+</svg>
+<span class="font-handwriting text-xs text-[#a43073] font-bold">flutter love ♡</span>
+</div>
+</div>
+<!-- Tulip Flower (Right) -->
+<div class="absolute top-[2320px] -right-2 transform rotate-12 sticker-pop z-10">
+<div class="bg-white/95 border-2 border-yellow-200 rounded-2xl p-1.5 shadow-xl flex flex-col items-center">
+<svg class="w-14 h-22" viewbox="0 0 60 90">
+<path d="M30,42 Q30,65 30,85" fill="none" stroke="#86efac" stroke-linecap="round" stroke-width="3"></path>
+<path d="M20,38 C18,22 28,14 30,22 C32,14 42,22 40,38 C40,46 20,46 20,38 Z" fill="#fef08a" stroke="#ffffff" stroke-width="2"></path>
+<path d="M16,34 C16,22 24,18 28,26 C22,34 20,36 16,34 Z" fill="#fde047"></path>
+<path d="M44,34 C44,22 36,18 32,26 C38,34 40,36 44,34 Z" fill="#fde047"></path>
+</svg>
+<span class="font-doodle text-[9px] text-[#726200] font-bold">blooming ♡</span>
+</div>
+</div>
+<!-- Fluffy Bear (Above Reasons section) -->
+<div class="absolute top-[2550px] -left-3 transform -rotate-8 sticker-pop z-10">
+<div class="bg-white/95 border-2 border-pink-200 rounded-3xl p-2 shadow-xl flex flex-col items-center">
+<svg class="w-18 h-18" viewbox="0 0 100 95">
+<circle cx="24" cy="24" fill="#ffffff" r="16" stroke="#fbcfe8" stroke-width="2.5"></circle>
+<circle cx="76" cy="24" fill="#ffffff" r="16" stroke="#fbcfe8" stroke-width="2.5"></circle>
+<circle cx="50" cy="52" fill="#ffffff" r="38" stroke="#fbcfe8" stroke-width="3"></circle>
+<circle cx="36" cy="48" fill="#4a3b32" r="3.5"></circle>
+<circle cx="64" cy="48" fill="#4a3b32" r="3.5"></circle>
+<ellipse cx="28" cy="55" fill="#ffb4a2" opacity="0.85" rx="8" ry="6"></ellipse>
+<ellipse cx="72" cy="55" fill="#ffb4a2" opacity="0.85" rx="8" ry="6"></ellipse>
+<ellipse cx="50" cy="56" fill="#fde2e4" rx="5" ry="3.5"></ellipse>
+<circle cx="50" cy="54" fill="#4a3b32" r="2.2"></circle>
+<path d="M47,57 Q50,60 53,57" fill="none" stroke="#4a3b32" stroke-linecap="round" stroke-width="1.5"></path>
+</svg>
+<span class="font-doodle text-xs font-bold text-primary">sweet angel 🧸</span>
+</div>
+</div>
+<!-- Interlocking Hearts Doodle (Near Reasons section) -->
+<div class="absolute top-[2820px] -right-2 transform rotate-8 sticker-pop z-10">
+<div class="bg-white/95 border-2 border-pink-300 rounded-2xl p-2 shadow-lg flex flex-col items-center">
+<svg class="w-14 h-9 text-[#f472b6]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" viewbox="0 0 60 40">
+<path d="M18,32 C10,26 4,18 4,11 C4,5 8,2 14,2 C18,2 21,5 23,8 C25,5 28,2 32,2 C38,2 42,5 42,11 C42,18 36,26 28,32 Z"></path>
+<path d="M34,36 C28,31 24,25 24,19 C24,14 27,11 31,11 C34,11 36,13 38,15 C40,13 42,11 45,11 C49,11 52,14 52,19 C52,25 47,31 41,36 Z"></path>
+</svg>
+<span class="font-doodle text-[10px] text-primary font-bold">forever love</span>
+</div>
+</div>
+<!-- Scattered stars and hearts -->
+<span class="absolute top-[180px] right-8 text-[#ffe24c] text-3xl font-bold drop-shadow-sm select-none">★</span>
+<span class="absolute top-[320px] left-6 text-[#ff8fa3] text-2xl font-bold select-none">💖</span>
+<span class="absolute top-[560px] right-6 text-[#ffe24c] text-2xl font-bold select-none">★</span>
+<span class="absolute top-[920px] left-4 text-[#c084fc] text-xl font-bold select-none">✦</span>
+<span class="absolute top-[1380px] right-8 text-[#ffe24c] text-2xl font-bold select-none">★</span>
+<span class="absolute top-[1650px] left-6 text-[#ff8fa3] text-2xl font-bold select-none">💖</span>
+<span class="absolute top-[2000px] right-6 text-[#ffe24c] text-3xl font-bold select-none">★</span>
+<span class="absolute top-[2350px] left-8 text-[#a43073] text-2xl font-bold select-none">✦</span>
+<span class="absolute top-[2680px] right-6 text-[#ff8fa3] text-2xl font-bold select-none">💖</span>
+<span class="absolute top-[3000px] left-6 text-[#ffe24c] text-3xl font-bold select-none">★</span>
+</div>
+<!-- Hero Anniversary Header Card -->
+<section class="relative mt-4 w-full rounded-3xl frosted-card p-space-md shadow-[0_16px_36px_-6px_rgba(244,114,182,0.32)] border-2 border-white overflow-visible">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-6 rounded-sm bg-secondary-fixed/90 tape-washi border border-secondary/30 shadow-sm rotate-1 flex items-center justify-center z-20">
+<span class="font-doodle text-xs font-bold text-on-secondary-container tracking-wider">OUR ANNIVERSARY ♡</span>
+</div>
+<div class="absolute -top-6 -right-6 w-36 h-36 rounded-full bg-primary-container/25 blur-2xl pointer-events-none"></div>
+<div class="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-secondary-container/30 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center text-center pt-2">
+<div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-secondary-container/90 border border-secondary-fixed shadow-sm animate-bounce mb-2"><span class="text-sm">🥂</span><span class="font-label-sm text-label-sm font-bold text-on-secondary-container tracking-wider uppercase">Today is Our Anniversary!</span><span class="text-sm">💍✨</span></div>
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile text-primary font-bold tracking-tight mt-1 mb-1">Happy Anniversary, My Baby Fellie! 💍✨</h1>
+<div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 backdrop-blur-md shadow-inner my-1 border border-primary-fixed"><span class="text-on-surface-variant font-body-sm text-body-sm">Celebrating another year together</span><span class="font-label-lg text-label-lg font-bold text-primary bg-primary-fixed px-2.5 py-0.5 rounded-full shadow-sm">My One &amp; Only 💖</span></div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-[290px] mt-2 mb-3 leading-relaxed">Thanks for choosing me in your life. You mean everything to me. Here’s to all the laughter, the sweet quiet moments, and a lifetime of forever together!</p>
+<button class="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary-container via-primary to-tertiary text-on-primary font-headline-sm text-headline-sm shadow-[0_10px_25px_-5px_rgba(164,48,115,0.45)] active:scale-95 transition-all duration-200" id="wish-btn" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-12" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+<span class="font-label-lg text-label-lg font-bold tracking-wide">Celebrate Our Love 🥂✨</span>
+<span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-secondary-container"></span>
+</span>
+</button>
+</div>
+</section>
+<!-- Calendar Section: November 2026 -->
+<section class="relative mt-6 w-full rounded-3xl bg-gradient-to-b from-[#fff0f3] via-white to-[#ffe5ec] p-4 shadow-[0_16px_36px_-6px_rgba(244,114,182,0.32)] border-2 border-pink-200 overflow-visible select-none">
+<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 w-44 h-6 bg-gradient-to-r from-primary-fixed via-secondary-container to-primary-fixed-dim rounded-sm tape-washi border-dashed border-t border-b border-primary/30 shadow-sm rotate-[-1deg] flex items-center justify-center z-20 pointer-events-none">
+<span class="font-doodle text-xs font-bold text-primary tracking-wider">NOVEMBER 2026 🐾🎀</span>
+</div>
+<div class="absolute -top-10 left-1 z-20 pointer-events-none transform -rotate-6">
+<div class="relative flex flex-col items-center">
+<div class="bg-white/95 px-2 py-0.5 rounded-full border border-pink-300 shadow-sm text-[10px] font-doodle font-bold text-primary mb-[-4px] flex items-center gap-1">
+<span>Anniversary Joy! 🐰💍</span>
+</div>
+<svg class="w-14 h-12 drop-shadow-md" viewbox="0 0 90 80">
+<ellipse cx="28" cy="20" fill="#ffffff" rx="7" ry="18" stroke="#fbcfe8" stroke-width="2" transform="rotate(-12 28 20)"></ellipse>
+<ellipse cx="28" cy="20" fill="#ffb4c6" rx="4" ry="12" transform="rotate(-12 28 20)"></ellipse>
+<ellipse cx="54" cy="18" fill="#ffffff" rx="7" ry="18" stroke="#fbcfe8" stroke-width="2" transform="rotate(14 54 18)"></ellipse>
+<ellipse cx="54" cy="18" fill="#ffb4c6" rx="4" ry="12" transform="rotate(14 54 18)"></ellipse>
+<ellipse cx="40" cy="48" fill="#ffffff" rx="28" ry="22" stroke="#fbcfe8" stroke-width="2.5"></ellipse>
+<circle cx="30" cy="45" fill="#362e30" r="2.5"></circle>
+<circle cx="50" cy="45" fill="#362e30" r="2.5"></circle>
+<ellipse cx="23" cy="52" fill="#ff8fa3" opacity="0.85" rx="5" ry="3.5"></ellipse>
+<ellipse cx="57" cy="52" fill="#ff8fa3" opacity="0.85" rx="5" ry="3.5"></ellipse>
+<ellipse cx="40" cy="50" fill="#f472b6" rx="2" ry="1.5"></ellipse>
+<path d="M36,52 Q40,55 40,52 Q40,55 44,52" fill="none" stroke="#362e30" stroke-linecap="round" stroke-width="1.4"></path>
+</svg>
+</div>
+</div>
+<div class="absolute -top-10 -right-2 z-20 pointer-events-none transform rotate-6">
+<div class="relative flex flex-col items-center">
+<div class="bg-white/95 px-2 py-0.5 rounded-full border border-pink-300 shadow-sm text-[10px] font-doodle font-bold text-primary mb-[-3px] flex items-center gap-1">
+<span>Forever Together! 🐻🥂</span>
+</div>
+<svg class="w-18 h-16 drop-shadow-md" viewbox="0 0 90 80">
+<circle cx="24" cy="28" fill="#ffffff" r="12" stroke="#fbcfe8" stroke-width="2"></circle>
+<circle cx="24" cy="28" fill="#ffd1dc" r="6"></circle>
+<circle cx="66" cy="28" fill="#ffffff" r="12" stroke="#fbcfe8" stroke-width="2"></circle>
+<circle cx="66" cy="28" fill="#ffd1dc" r="6"></circle>
+<polygon fill="#ffe24c" points="45,8 36,26 54,26" stroke="#ffffff" stroke-width="1.5"></polygon>
+<circle cx="45" cy="7" fill="#f472b6" r="2.5"></circle>
+<ellipse cx="45" cy="48" fill="#ffffff" rx="27" ry="22" stroke="#fbcfe8" stroke-width="2.5"></ellipse>
+<circle cx="35" cy="44" fill="#4a3b32" r="2.5"></circle>
+<circle cx="55" cy="44" fill="#4a3b32" r="2.5"></circle>
+<ellipse cx="27" cy="52" fill="#ff8fa3" opacity="0.85" rx="5" ry="3"></ellipse>
+<ellipse cx="63" cy="52" fill="#ff8fa3" opacity="0.85" rx="5" ry="3"></ellipse>
+</svg>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 pb-2 px-1 border-b border-dashed border-primary-fixed/60">
+<div class="flex items-center gap-2">
+<span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary-fixed text-primary text-sm shadow-sm border border-white">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+</span>
+<div>
+<h3 class="font-headline-sm text-[18px] font-bold text-primary flex items-center gap-1.5 leading-tight">Our Love Story Countdown <span class="text-xs">✨💍</span></h3>
+<p class="font-label-sm text-[11px] text-on-surface-variant font-medium">November 2026 • The Best Month Ever 💖</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-primary-fixed/90 text-primary font-doodle text-xs font-bold border border-primary/20 shadow-xs flex items-center gap-1"><span>🥂</span> Anniversary Month! 💍</span>
+</div>
+<div class="mt-3 p-3 rounded-2xl bg-white/95 border-2 border-dashed border-pink-300 shadow-inner relative overflow-hidden">
+<div class="grid grid-cols-7 text-center gap-1 mb-1.5 font-label-sm text-[11px] font-bold">
+<span class="py-0.5 rounded-full bg-[#ffe5ec] text-error font-bold border border-pink-200">Su</span>
+<span class="py-0.5 rounded-full bg-pink-50 text-on-surface-variant border border-pink-100">Mo</span>
+<span class="py-0.5 rounded-full bg-pink-50 text-on-surface-variant border border-pink-100">Tu</span>
+<span class="py-0.5 rounded-full bg-pink-50 text-on-surface-variant border border-pink-100">We</span>
+<span class="py-0.5 rounded-full bg-pink-50 text-on-surface-variant border border-pink-100">Th</span>
+<span class="py-0.5 rounded-full bg-primary-fixed/80 text-primary font-bold border border-primary-fixed">Fr</span>
+<span class="py-0.5 rounded-full bg-pink-50 text-on-surface-variant border border-pink-100">Sa</span>
+</div>
+<div class="grid grid-cols-7 text-center gap-y-1.5 gap-x-1 font-body-sm text-[13px] font-medium">
+<!-- November 2026: Starts Nov 1 on Sunday -->
+<div class="h-8 flex items-center justify-center rounded-xl text-error/80 font-semibold hover:bg-pink-100 transition-all">1</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">2</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">3</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">4</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">5</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">6</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">7</div>
+<div class="h-8 flex items-center justify-center rounded-xl text-error/80 font-semibold hover:bg-pink-100 transition-all">8</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">9</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">10</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">11</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">12</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">13</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">14</div>
+<div class="h-8 flex items-center justify-center rounded-xl text-error/80 font-semibold hover:bg-pink-100 transition-all">15</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">16</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">17</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">18</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">19</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">20</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">21</div>
+<div class="h-8 flex items-center justify-center rounded-xl text-error/80 font-semibold hover:bg-pink-100 transition-all">22</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">23</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">24</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">25</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">26</div>
+<!-- DAY 27 (Friday): SPECIAL PUFFY GLOWING HEART ANNIVERSARY BADGE -->
+<div class="relative h-8 flex items-center justify-center group cursor-pointer">
+<div class="absolute inset-0 rounded-full bg-[#f472b6] opacity-40 animate-ping"></div>
+<div class="relative w-8 h-8 flex items-center justify-center drop-shadow-[0_2px_8px_rgba(244,114,182,0.85)] transform group-hover:scale-110 transition-transform">
+<svg class="w-8 h-8 text-primary animate-pulse" fill="currentColor" viewbox="0 0 24 24">
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+</svg>
+<span class="absolute text-white font-bold text-[11px] -mt-0.5 tracking-tighter">27</span>
+</div>
+<span class="absolute -top-3 -right-2.5 text-[12px] filter drop-shadow-sm animate-bounce">💍</span>
+<span class="absolute -bottom-2.5 -left-1 text-[9px] text-[#ffe24c]">✨</span>
+<span class="absolute -top-2.5 -left-1.5 text-[9px] text-pink-500">💖</span>
+</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">28</div>
+<div class="h-8 flex items-center justify-center rounded-xl text-error/80 font-semibold hover:bg-pink-100 transition-all">29</div>
+<div class="h-8 flex items-center justify-center rounded-xl hover:bg-pink-100 text-on-surface transition-all">30</div>
+<div class="h-8 flex items-center justify-center text-outline-variant/30 text-xs">🍓</div>
+<div class="h-8 flex items-center justify-center text-outline-variant/30 text-xs">🎀</div>
+<div class="h-8 flex items-center justify-center text-outline-variant/30 text-xs">✨</div>
+<div class="h-8 flex items-center justify-center text-outline-variant/30 text-xs">🌸</div>
+<div class="h-8 flex items-center justify-center text-outline-variant/30 text-xs">🐾</div>
+</div>
+</div>
+<div class="mt-3 p-2.5 rounded-2xl bg-gradient-to-r from-primary-fixed/60 via-white to-secondary-container/60 border border-pink-300 shadow-sm flex items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="text-lg animate-bounce">🎀</span>
+<div class="flex flex-col">
+<span class="font-doodle text-xs font-bold text-primary flex items-center gap-1">27 Nov • Our Happy Anniversary 💍🥂</span>
+<span class="font-handwriting text-[11px] text-on-surface-variant font-bold">Cuddles, wishes &amp; love forever ♡</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-sm shrink-0">
+<span>🧸</span>
+<span>🍓</span>
+</div>
+</div>
+<div class="mt-2 pt-1 flex items-center justify-center gap-1.5 text-center">
+<span class="text-xs">🐾</span>
+<span class="text-xs">🌸</span>
+<p class="font-handwriting text-sm text-primary font-bold tracking-wide">“Marking the sweetest day our forever began! 🌸💍💖”</p>
+<span class="text-xs">🌸</span>
+<span class="text-xs">🐾</span>
+</div>
+</section>
+<!-- SECTION: Our Love Scrapbook & Memories (Exactly 8-Photo Romantic Gallery) -->
+<section class="flex flex-col gap-space-md w-full relative pt-6">
+<div class="flex items-center justify-between px-1 pt-12 mt-2">
+<div class="flex items-center gap-2">
+<span class="flex items-center justify-center w-8 h-8 rounded-full bg-white text-primary shadow-sm border border-primary-fixed">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-1">Our Love Scrapbook <span class="text-xs">🎀</span></h2>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold shadow-sm border border-secondary/20">8 Keepsakes 💕</span>
+</div>
+<div class="flex flex-col gap-space-lg w-full relative">
+<!-- FEATURED POLAROID 1: First Christmas Photo Together (Memory #1) -->
+<div class="relative frosted-card rounded-3xl p-4 pt-6 shadow-[0_14px_30px_-6px_rgba(244,114,182,0.28)] border-2 border-white transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+<div class="absolute -top-3 left-8 w-28 h-6 bg-gradient-to-r from-primary-fixed-dim via-primary-fixed to-primary-container/80 shadow-sm rounded-sm transform -rotate-2 tape-washi border-dashed border-t border-b border-primary/30 pointer-events-none z-20 flex items-center justify-center">
+<span class="font-doodle text-[11px] text-primary font-bold tracking-wider">SWEETEST MEMORY ♡</span>
+</div>
+<div class="absolute -top-2 right-4 w-9 h-11 bg-white border-2 border-dashed border-primary-container rounded-sm shadow-sm flex flex-col items-center justify-center rotate-6 z-20 pointer-events-none p-0.5">
+<span class="text-[9px] font-bold text-primary tracking-tighter">LOVE</span>
+<span class="text-xs">🌸</span>
+</div>
+<div class="w-full aspect-square rounded-2xl overflow-hidden bg-surface-container-high relative shadow-inner border border-primary-fixed/40">
+<img alt="Our first Christmas together at Natal ITS" class="w-full h-full object-cover" src="assets/Photo/natal.jpg"/>
+<div class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-[11px] font-bold text-primary flex items-center gap-1 shadow-sm border border-primary-fixed">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">snowflake</span>
+<span>Natal ITS • Desember 2025</span>
+</div>
+<div class="absolute top-2 right-2 text-xl filter drop-shadow-md select-none rotate-12">💖</div>
+</div>
+<div class="pt-3 pb-2 px-1 flex items-center justify-between">
+<span class="font-handwriting text-2xl text-on-surface font-bold tracking-wide">“Foto natalan pertama <br> kita 💕”</span>
+<span class="font-label-sm text-[11px] text-primary font-bold bg-primary-fixed/80 px-2.5 py-0.5 rounded-full border border-primary/20">Natal</span>
+</div>
+<div class="mt-1 p-3 rounded-2xl bg-white/90 border-l-4 border-primary flex flex-col gap-1 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>Sweet Note</span>
+</span>
+<span class="text-xs">💌</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic font-medium leading-snug">“Natalan pertama kita, fotonya aja masih malu-malu. Tapi happy banget akhirnya bisa foto bareng. 😄✨”</p>
+</div>
+</div>
+<!-- FEATURED POLAROID 2: First Photobooth After LDR (Memory #2) -->
+<div class="relative frosted-card rounded-3xl p-4 pt-6 shadow-[0_14px_30px_-6px_rgba(244,114,182,0.28)] border-2 border-white transform rotate-1 hover:rotate-0 transition-transform duration-300">
+<div class="absolute -top-3 right-8 w-32 h-6 bg-gradient-to-r from-secondary-container via-secondary-fixed to-secondary-container/90 shadow-sm rounded-sm transform rotate-2 tape-washi border-dashed border-t border-b border-secondary/30 pointer-events-none z-20 flex items-center justify-center">
+<span class="font-doodle text-[11px] text-on-secondary-container font-bold tracking-wider">PHOTOBOOTH FUN ♡</span>
+</div>
+<div class="absolute -top-2 left-5 px-2 py-0.5 bg-tertiary-fixed rounded-full border border-tertiary/40 shadow-xs flex items-center gap-1 z-20 pointer-events-none rotate-[-6deg]">
+<span class="text-xs">📎</span>
+<span class="font-doodle text-[10px] text-tertiary font-bold">Photos</span>
+</div>
+<div class="w-full aspect-square rounded-2xl overflow-hidden bg-surface-container-high relative shadow-inner border border-secondary-container/50">
+<img alt="Our first photobooth together after LDR" class="w-full h-full object-cover" src="assets/Photo/photobooth.jpg"/>
+<div class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-[11px] font-bold text-secondary flex items-center gap-1 shadow-sm border border-secondary-fixed">
+<span class="text-xs">🐰</span>
+<span>Photobooth PCM • Februari 2026</span>
+</div>
+<div class="absolute top-2 right-2 text-xl filter drop-shadow-md select-none">📸</div>
+</div>
+<div class="pt-3 pb-1 px-1 flex items-center justify-between">
+<span class="font-handwriting text-2xl text-on-surface font-bold tracking-wide">“Photobooth pertama <br> setelah LDR 🐰✨”</span>
+<span class="font-label-sm text-[11px] text-secondary font-bold bg-secondary-fixed/90 px-2.5 py-0.5 rounded-full border border-secondary/20">Before Valentine</span>
+</div>
+<div class="mt-1 p-3 rounded-2xl bg-white/90 border-l-4 border-secondary-container flex flex-col gap-1 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">theater_comedy</span>
+<span>Sweet Note</span>
+</span>
+<span class="text-xs">✨</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic font-medium leading-snug">“Setelah dua bulan LDR yang lama banget, akhirnya bisa photobooth bareng, lesgooww! Waktu itu kangen banget karena nggak ketemu selama dua bulan. 😔😢”</p>
+</div>
+</div>
+<!-- SECTION DIVIDER -->
+<div class="flex items-center justify-center gap-3 py-1 select-none">
+<span class="text-base animate-bounce">🍓</span>
+<div class="h-0.5 w-16 bg-gradient-to-r from-transparent via-primary-container to-transparent"></div>
+<span class="font-doodle text-primary font-bold text-sm tracking-widest uppercase">more sweet memories ♡</span>
+<div class="h-0.5 w-16 bg-gradient-to-r from-transparent via-primary-container to-transparent"></div>
+<span class="text-base animate-bounce">🎀</span>
+</div>
+<!-- 2-COLUMN GRID (Photos 3, 4, 5, 6) -->
+<div class="grid grid-cols-2 gap-3 w-full">
+<!-- PHOTO 3: Long-Distance Video Call -->
+<div class="relative frosted-card rounded-2xl p-2.5 pt-4 shadow-md border-2 border-white flex flex-col transform -rotate-1 hover:rotate-0 transition-transform">
+<div class="absolute -top-2 left-4 w-16 h-4 bg-primary-fixed/80 tape-washi rounded-sm -rotate-3 border-t border-b border-primary/20 z-10"></div>
+<div class="w-full aspect-square rounded-xl overflow-hidden bg-surface-container-high relative border border-primary-fixed/30 shadow-inner">
+<img alt="Momen LDR" class="w-full h-full object-cover" src="assets/Photo/ldr.jpg"/>
+<div class="absolute top-1 right-1 text-xs">✨</div>
+</div>
+<div class="mt-2 text-center">
+<p class="font-handwriting text-base text-on-surface font-bold leading-tight">“Video Call Waktu LDR 📱”</p>
+<span class="inline-block mt-1 px-2 py-0.5 bg-primary-fixed text-primary text-[10px] font-bold rounded-full">Video Call Terus-terusan</span>
+</div>
+<div class="mt-1.5 p-1.5 rounded-xl bg-white/80 border border-primary-fixed/30 text-[10px] text-on-surface-variant font-body-sm italic leading-tight text-center">
+  Masa-masa kangen saat LDR, cuma bisa video call sambil main bareng. 😔 Tapi tetap happy karena masih bisa quality time bareng-bareng. 😆
+</div>
+</div>
+<!-- PHOTO 4: Silly Car Filter -->
+<div class="relative frosted-card rounded-2xl p-2.5 pt-4 shadow-md border-2 border-white flex flex-col transform rotate-1 hover:rotate-0 transition-transform">
+<div class="absolute -top-2 right-4 w-16 h-4 bg-secondary-container/80 tape-washi rounded-sm rotate-3 border-t border-b border-secondary/20 z-10"></div>
+<div class="w-full aspect-square rounded-xl overflow-hidden bg-surface-container-high relative border border-secondary/20 shadow-inner">
+<img alt="Foto filter lucu di mobil" class="w-full h-full object-cover" src="assets/Photo/mobil.jpg"/>
+<div class="absolute top-1 right-1 text-xs">🍰</div>
+</div>
+<div class="mt-2 text-center">
+<p class="font-handwriting text-base text-on-surface font-bold leading-tight">“Filter Muka Plenger 😛”</p>
+<span class="inline-block mt-1 px-2 py-0.5 bg-secondary-fixed text-on-secondary-container text-[10px] font-bold rounded-full">Main Filter di Mobil</span>
+</div>
+<div class="mt-1.5 p-1.5 rounded-xl bg-white/80 border border-secondary-fixed/40 text-[10px] text-on-surface-variant font-body-sm italic leading-tight text-center">
+  Main filter muka plenger di mobil sambil menunggu sampai Batu. Kocak banget, plenger abis! 👹
+</div>
+</div>
+<!-- PHOTO 5: AEON Date -->
+<div class="relative frosted-card rounded-2xl p-2.5 pt-4 shadow-md border-2 border-white flex flex-col transform rotate-1 hover:rotate-0 transition-transform">
+<div class="absolute -top-2 left-4 w-16 h-4 bg-tertiary-fixed/80 tape-washi rounded-sm rotate-2 border-t border-b border-tertiary/20 z-10"></div>
+<div class="w-full aspect-square rounded-xl overflow-hidden bg-surface-container-high relative border border-tertiary-fixed shadow-inner">
+<img alt="Jalan-jalan dan makan di AEON" class="w-full h-full object-cover" src="assets/Photo/aeon.jpg"/>
+<div class="absolute top-1 right-1 text-xs">🍓</div>
+</div>
+<div class="mt-2 text-center">
+<p class="font-handwriting text-base text-on-surface font-bold leading-tight">“Makan di AEON 🍚”</p>
+<span class="inline-block mt-1 px-2 py-0.5 bg-tertiary-fixed text-tertiary text-[10px] font-bold rounded-full">Jalan-jalan ke AEON</span>
+</div>
+<div class="mt-1.5 p-1.5 rounded-xl bg-white/80 border border-tertiary-fixed text-[10px] text-on-surface-variant font-body-sm italic leading-tight text-center">
+  Pertama kali makan di AEON, ternyata makanannya enak banget sampai minggu depannya kita balik lagi. 😋
+</div>
+</div>
+<!-- PHOTO 6: Study Date at Second Cup -->
+<div class="relative frosted-card rounded-2xl p-2.5 pt-4 shadow-md border-2 border-white flex flex-col transform -rotate-1 hover:rotate-0 transition-transform">
+<div class="absolute -top-2 right-4 w-16 h-4 bg-primary-container/70 tape-washi rounded-sm -rotate-2 border-t border-b border-primary/20 z-10"></div>
+<div class="w-full aspect-square rounded-xl overflow-hidden bg-surface-container-high relative border border-primary-container/30 shadow-inner">
+<img alt="Nugas bareng di cafe" class="w-full h-full object-cover" src="assets/Photo/cafe.jpg"/>
+<div class="absolute top-1 right-1 text-xs">🌸</div>
+</div>
+<div class="mt-2 text-center">
+<p class="font-handwriting text-base text-on-surface font-bold leading-tight">“Nugas di Cafe 🌸”</p>
+<span class="inline-block mt-1 px-2 py-0.5 bg-primary-fixed text-primary text-[10px] font-bold rounded-full">Quality Time di Second Cup</span>
+</div>
+<div class="mt-1.5 p-1.5 rounded-xl bg-white/80 border border-primary-fixed/30 text-[10px] text-on-surface-variant font-body-sm italic leading-tight text-center">
+  Nugas bareng di Second Cup sambil nonton Netflix, lesgo! Kita sering banget ke cafe, dan selalu seru karena bisa quality time bareng kamu. 🥰💖
+</div>
+</div>
+</div>
+<!-- PHOTO 7: Batu Trip and Museum Angkot (Memory #7) -->
+<div class="relative frosted-card rounded-3xl p-4 pt-6 shadow-[0_14px_30px_-6px_rgba(244,114,182,0.28)] border-2 border-white transform rotate-1 hover:rotate-0 transition-transform duration-300">
+<div class="absolute -top-3 left-10 w-32 h-6 bg-gradient-to-r from-secondary-fixed via-secondary-container to-secondary-fixed shadow-sm rounded-sm transform rotate-1 tape-washi border-dashed border-t border-b border-secondary/30 pointer-events-none z-20 flex items-center justify-center">
+<span class="font-doodle text-[11px] text-on-secondary-container font-bold tracking-wider">HAPPY TRIP ✨</span>
+</div>
+<div class="w-full aspect-square rounded-2xl overflow-hidden bg-surface-container-high relative shadow-inner border border-secondary-container/50">
+<img alt="Our trip to Batu and Museum Angkot" class="w-full h-full object-cover" src="assets/Photo/batu.jpg"/>
+<div class="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-[11px] font-bold text-secondary flex items-center gap-1 shadow-sm border border-secondary-fixed">
+<span class="text-xs">🍿</span>
+<span>Trip ke Batu • Maret 2026</span>
+</div>
+<div class="absolute top-2 right-2 text-xl filter drop-shadow-md select-none">✨</div>
+</div>
+<div class="pt-3 pb-1 px-1 flex items-center justify-between">
+<span class="font-handwriting text-2xl text-on-surface font-bold tracking-wide">“Jalan-jalan ke <br> Batu ✨”</span>
+<span class="font-label-sm text-[11px] text-secondary font-bold bg-secondary-fixed/90 px-2.5 py-0.5 rounded-full border border-secondary/20">Museum Angkot Batu🪨</span>
+</div>
+<div class="mt-1 p-3 rounded-2xl bg-white/90 border-l-4 border-secondary-container flex flex-col gap-1 shadow-sm">
+<p class="font-body-sm text-body-sm text-on-surface italic font-medium leading-snug">“Seru banget, ini pertama kalinya kita ke luar kota bareng walaupun ditemenin Mama, wle. Happy banget bisa jalan-jalan sama kamu di Museum Angkot. 🚗💨”</p>
+</div>
+</div>
+<!-- PHOTO 8: Birthday Dinner and Celebration (Memory #8) -->
+<div class="relative frosted-card rounded-3xl p-4 pt-6 shadow-[0_14px_30px_-6px_rgba(244,114,182,0.28)] border-2 border-white transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+<div class="absolute -top-3 right-10 w-36 h-6 bg-gradient-to-r from-primary-fixed-dim via-primary-container to-primary-fixed shadow-sm rounded-sm transform -rotate-2 tape-washi border-dashed border-t border-b border-primary/30 pointer-events-none z-20 flex items-center justify-center">
+<span class="font-doodle text-[11px] text-white font-bold tracking-wider">Birthday Girl 🧁</span>
+</div>
+<div class="w-full aspect-square rounded-2xl overflow-hidden bg-surface-container-high relative shadow-inner border border-primary-container/40">
+<img alt="Birthday Party" class="w-full h-full object-cover" src="assets/Photo/ultah.jpg"/>
+<div class="absolute bottom-2 right-2 px-2.5 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-[11px] font-bold text-primary flex items-center gap-1 shadow-sm border border-primary-fixed">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">cake</span>
+<span>Rayain Ultah Bareng 🍓🧁 • September 2026</span>
+</div>
+<div class="absolute top-2 left-2 text-xl filter drop-shadow-md select-none">🧁</div>
+</div>
+<div class="pt-3 pb-1 px-1 flex items-center justify-between">
+<span class="font-handwriting text-2xl text-on-surface font-bold tracking-wide">“Rayain Ultah My Baby <br> yang ke-19 🍓🧁”</span>
+<span class="font-label-sm text-[11px] text-primary font-bold bg-primary-fixed px-2.5 py-0.5 rounded-full border border-primary/20">Birthday Party</span>
+</div>
+<div class="mt-1 p-3 rounded-2xl bg-white/90 border-l-4 border-primary flex flex-col gap-1 shadow-sm">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>Sweet Note</span>
+</span>
+<span class="text-xs">🧁</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface italic font-medium leading-snug">“Dan yap, salah satu hari yang paling ditunggu-tunggu: ultah kamu, yeayyy! Seneng banget bisa rayain ultah bareng kamu, lihat kamu happy, dan jalan-jalan bareng. 🥳💐”</p>
+</div>
+</div>
+<!-- Scrapbook Love Notes -->
+<div class="p-space-md rounded-3xl frosted-card border-2 border-white shadow-[0_12px_28px_rgba(244,114,182,0.25)] flex flex-col gap-3 relative">
+<div class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-primary-container text-white font-doodle text-xs font-bold shadow-sm flex items-center gap-1 rotate-2">
+<span>🧸</span> Forever &amp; Ever
+  </div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">mark_email_read</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Forever Reasons I Adore You</h3>
+</div>
+<span class="text-xs">🎂 💖</span>
+</div>
+<div class="grid grid-cols-1 gap-2.5">
+<div class="p-3.5 rounded-2xl bg-white border-l-4 border-tertiary-container shadow-sm relative">
+<p class="font-body-sm text-body-sm text-on-surface italic font-medium">“To the one who holds my whole heart:
+Happy anniversary yaaa, sayangku, bayi kecilku, dan Fellie imutku! Thank you karena sudah memilih aku di hidup kamu dan selalu memperjuangkan hubungan kita sampai di titik sekarang. I'm so happy to have you in my life. Thank you karena sudah memberi warna di hidup aku, bikin aku semangat menjalani hari-hari, dan selalu hadir untuk aku. Masih banyak banget momen yang belum aku masukin di sini. I'm really grateful bisa menikmati setiap momen itu bareng kamu, sayanggg.”</p>
+<span class="absolute bottom-2 right-2 text-xs">✨</span>
+</div>
+
+<div class="p-3.5 rounded-2xl bg-white border-l-4 border-primary-container shadow-sm relative">
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">I'm sorry klo selama ini aku banyak bikin salah dan ninggalin luka buat kamu sayangg. But I hope kita bisa terus jalanin dan perjuangin hubungan ini sampe akhir hayat kita. Kita terus berjuang dan bertumbuh bareng yaaa sayangg. Thank you karena selalu memilih buat stay sama aku. Aku berharap ke depannya kita bisa semakin saling sayang. I love every part of you, semua kelebihan dan kekurangan kamu, termasuk  sisi bayi dan plenger kamu. Aku bener-bener bersyukur banget bisa punya kamu di hidup aku. Thank you for everything you gave to me, all the moments and the happiness. Once again, happy first anniversary baby! 🥰💖💌 Thank you for everything you gave to me, all the moments and the happiness. Once again, happy first anniversary baby! 🥰💖💌</p>
+<span class="absolute bottom-2 right-2 text-xs">🌸</span>
+</div>
+</div>
+<div class="mt-1 pt-2 border-t border-dashed border-outline-variant/40 flex items-center justify-between px-2">
+<div class="flex items-center gap-1.5 font-doodle text-xs text-primary font-bold">
+<span>🍒</span> Cherishing every single second with you
+    </div>
+<div class="flex items-center gap-1 text-sm">
+<span class="hover:scale-125 transition-transform">🍬</span>
+<span class="hover:scale-125 transition-transform">🎀</span>
+<span class="hover:scale-125 transition-transform">🧸</span>
+<span class="hover:scale-125 transition-transform">⭐️</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION: Interactive Ultra-Kawaii Mystery Gift Box Surprise -->
+<section class="relative w-full rounded-3xl frosted-card p-space-md shadow-[0_18px_40px_-10px_rgba(244,114,182,0.32)] border-2 border-white overflow-visible flex flex-col items-center text-center mt-2">
+<div class="flex items-center justify-center gap-2 mb-2">
+<span class="text-sm">🎁</span>
+<span class="text-sm">🎀</span>
+<div class="text-xs font-bold text-primary uppercase tracking-widest flex items-center gap-1 bg-white px-3.5 py-1.5 rounded-full border border-primary-fixed shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">redeem</span>
+<span>Special Anniversary Surprise 💖</span>
+</div>
+<span class="text-sm">🎀</span>
+<span class="text-sm">🎁</span>
+</div>
+<!-- Interactive Mystery Gift Box Visual Area -->
+<div class="relative w-full max-w-[300px] mt-2 flex flex-col items-center justify-end select-none gift-box-wrapper cursor-pointer" id="gift-box-wrapper">
+<!-- DYNAMIC POP-UP BLOOMING BOUQUET -->
+<div class="gift-bouquet absolute left-1/2 bottom-28 z-40 w-64 flex flex-col items-center pointer-events-none" id="gift-bouquet">
+<div class="bg-white/95 px-3.5 py-1 rounded-full border-2 border-pink-300 shadow-md text-xs font-doodle font-bold text-primary mb-1 flex items-center gap-1.5">
+<span>💐 Endless Love For You 🌸✨</span>
+</div>
+<!-- Pink-dominant bouquet with roses, blossoms, and blush wrapping -->
+<svg class="w-48 h-48 drop-shadow-[0_12px_24px_rgba(244,114,182,0.45)]" viewbox="0 0 200 200">
+<!-- Blush bouquet wrapping -->
+<path d="M70,140 L130,140 L140,190 L60,190 Z" fill="#ffe5ec" stroke="#f472b6" stroke-width="2.5"></path>
+<path d="M60,140 Q100,165 140,140 L130,190 Q100,198 70,190 Z" fill="#ffc2d1" opacity="0.6"></path>
+<!-- Satin Ribbon around bouquet -->
+<path d="M56,155 Q100,168 144,155 Q100,180 56,155 Z" fill="#f472b6" stroke="#db2777" stroke-width="1.5"></path>
+<circle cx="100" cy="164" fill="#ec4899" r="5"></circle>
+<path d="M96,166 Q88,186 78,192 M104,166 Q112,186 122,192" fill="none" stroke="#db2777" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Foliage / Leaves -->
+<path d="M50,120 Q30,95 55,80 Q70,105 50,120 Z" fill="#86efac" stroke="#4ade80" stroke-width="1.5"></path>
+<path d="M150,120 Q170,95 145,80 Q130,105 150,120 Z" fill="#86efac" stroke="#4ade80" stroke-width="1.5"></path>
+<path d="M100,90 Q90,60 100,45 Q110,60 100,90 Z" fill="#a7f3d0" stroke="#34d399" stroke-width="1.5"></path>
+<!-- Smaller blush roses behind the main bloom -->
+<g transform="translate(58, 106)">
+<circle cx="0" cy="-9" fill="#f9a8d4" r="13"></circle>
+<circle cx="9" cy="0" fill="#f472b6" r="13"></circle>
+<circle cx="0" cy="9" fill="#fbcfe8" r="13"></circle>
+<circle cx="-9" cy="0" fill="#f472b6" r="13"></circle>
+<circle cx="0" cy="0" fill="#ec4899" r="9"></circle>
+<path d="M-5,0 Q0,-7 5,0 Q0,7 -5,0 Z" fill="#fbcfe8"></path>
+</g>
+<g transform="translate(142, 106)">
+<circle cx="0" cy="-9" fill="#fbcfe8" r="13"></circle>
+<circle cx="9" cy="0" fill="#f9a8d4" r="13"></circle>
+<circle cx="0" cy="9" fill="#f472b6" r="13"></circle>
+<circle cx="-9" cy="0" fill="#f9a8d4" r="13"></circle>
+<circle cx="0" cy="0" fill="#db2777" r="9"></circle>
+<path d="M-5,0 Q0,-7 5,0 Q0,7 -5,0 Z" fill="#fbcfe8"></path>
+</g>
+<!-- Center Big Pink Rose -->
+<circle cx="100" cy="105" fill="#f472b6" r="28" stroke="#ffffff" stroke-width="2.5"></circle>
+<circle cx="100" cy="105" fill="#fb7185" r="20"></circle>
+<path d="M90,105 Q100,90 110,105 Q100,118 90,105" fill="#f43f5e"></path>
+<circle cx="100" cy="105" fill="#fda4af" r="8"></circle>
+<!-- Smiling Daisy (Left) -->
+<g transform="translate(62, 75)">
+<circle cx="0" cy="-14" fill="#f9a8d4" r="9" stroke="#fbcfe8" stroke-width="1.5"></circle>
+<circle cx="14" cy="0" fill="#f472b6" r="9" stroke="#fbcfe8" stroke-width="1.5"></circle>
+<circle cx="0" cy="14" fill="#f9a8d4" r="9" stroke="#fbcfe8" stroke-width="1.5"></circle>
+<circle cx="-14" cy="0" fill="#f472b6" r="9" stroke="#fbcfe8" stroke-width="1.5"></circle>
+<circle cx="10" cy="-10" fill="#fbcfe8" r="9" stroke="#fbcfe8" stroke-width="1.5"></circle>
+<circle cx="-10" cy="-10" fill="#fbcfe8" r="9" stroke="#fbcfe8" stroke-width="1.5"></circle>
+<circle cx="10" cy="10" fill="#f9a8d4" r="9" stroke="#fbcfe8" stroke-width="1.5"></circle>
+<circle cx="-10" cy="10" fill="#f9a8d4" r="9" stroke="#fbcfe8" stroke-width="1.5"></circle>
+<circle cx="0" cy="0" fill="#ec4899" r="12" stroke="#ffffff" stroke-width="2"></circle>
+<!-- cute smile -->
+<circle cx="-4" cy="-2" fill="#726200" r="1.6"></circle>
+<circle cx="4" cy="-2" fill="#726200" r="1.6"></circle>
+<ellipse cx="-6" cy="2" fill="#f472b6" rx="2" ry="1.2"></ellipse>
+<ellipse cx="6" cy="2" fill="#f472b6" rx="2" ry="1.2"></ellipse>
+<path d="M-2,2 Q0,5 2,2" fill="none" stroke="#726200" stroke-linecap="round" stroke-width="1.4"></path>
+</g>
+<!-- Pink Blossom (Right) -->
+<g transform="translate(138, 78)">
+<circle cx="0" cy="-12" fill="#f9a8d4" r="8" stroke="#ec4899" stroke-width="1.5"></circle>
+<circle cx="12" cy="0" fill="#fbcfe8" r="8" stroke="#ec4899" stroke-width="1.5"></circle>
+<circle cx="0" cy="12" fill="#f9a8d4" r="8" stroke="#ec4899" stroke-width="1.5"></circle>
+<circle cx="-12" cy="0" fill="#fbcfe8" r="8" stroke="#ec4899" stroke-width="1.5"></circle>
+<circle cx="0" cy="0" fill="#ec4899" r="10" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="-3" cy="-1.5" fill="#831843" r="1.4"></circle>
+<circle cx="3" cy="-1.5" fill="#831843" r="1.4"></circle>
+<path d="M-2,2 Q0,4 2,2" fill="none" stroke="#831843" stroke-linecap="round" stroke-width="1.2"></path>
+</g>
+<!-- Sakura Petals on Top -->
+<g transform="translate(100, 52)">
+<path d="M0,0 C-10,-12 -8,-24 0,-30 C8,-24 10,-12 0,0 Z" fill="#ffb4c6" stroke="#ffffff" stroke-width="1.5"></path>
+<path d="M0,0 C-12,-8 -24,-8 -30,0 C-24,8 -12,8 0,0 Z" fill="#ffb4c6" stroke="#ffffff" stroke-width="1.5"></path>
+<path d="M0,0 C12,-8 24,-8 30,0 C24,8 12,8 0,0 Z" fill="#ffb4c6" stroke="#ffffff" stroke-width="1.5"></path>
+<circle cx="0" cy="-4" fill="#f43f5e" r="5"></circle>
+</g>
+<!-- Pink Stars & Sparkles -->
+<polygon fill="#f9a8d4" points="45,45 48,52 55,54 50,59 52,66 45,62 38,66 40,59 35,54 42,52" stroke="#ffffff" stroke-width="1"></polygon>
+<polygon fill="#fbcfe8" points="155,48 157,53 162,54 158,58 159,63 155,60 151,63 152,58 148,54 153,53" stroke="#ffffff" stroke-width="1"></polygon>
+<text fill="#f472b6" font-size="14" x="32" y="110">✨</text>
+<text fill="#f472b6" font-size="14" x="156" y="115">💖</text>
+</svg>
+</div>
+<!-- GIFT BOX BASE & LID -->
+<div class="relative w-52 flex flex-col items-center">
+<!-- HANGING GIFT TAG "For My Love 💌" -->
+<div class="absolute -top-7 -right-3 z-30 transform rotate-12 transition-transform duration-300 hover:rotate-6">
+<div class="bg-gradient-to-r from-secondary-container to-secondary-fixed text-on-secondary-container font-doodle text-[11px] font-bold px-2.5 py-1 rounded-full border border-secondary shadow-md flex items-center gap-1">
+<span>For My Love 💌</span>
+</div>
+</div>
+<div class="absolute -top-6 -left-3 z-30 transform -rotate-12">
+<div class="bg-white/95 text-primary font-doodle text-[10px] font-bold px-2 py-0.5 rounded-full border border-primary-fixed shadow-sm flex items-center gap-0.5">
+<span>Tap to Open 🎁✨</span>
+</div>
+</div>
+<!-- GIFT LID (Animates when opened) -->
+<div class="gift-lid relative w-56 h-14 z-20 flex flex-col items-center">
+<!-- Big Glossy Ribbon Bow -->
+<div class="absolute -top-7 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center">
+<svg class="w-24 h-12 drop-shadow-md" viewbox="0 0 100 50">
+<!-- Bow Loops -->
+<path d="M50,26 C35,8 10,6 18,24 C24,34 44,28 50,26 Z" fill="#ffe24c" stroke="#ca8a04" stroke-width="1.8"></path>
+<path d="M50,26 C65,8 90,6 82,24 C76,34 56,28 50,26 Z" fill="#ffe24c" stroke="#ca8a04" stroke-width="1.8"></path>
+<ellipse cx="28" cy="18" fill="#fef08a" opacity="0.75" rx="7" ry="4"></ellipse>
+<ellipse cx="72" cy="18" fill="#fef08a" opacity="0.75" rx="7" ry="4"></ellipse>
+<!-- Ribbon knot & tails -->
+<circle cx="50" cy="26" fill="#f59e0b" r="6" stroke="#ffffff" stroke-width="1.5"></circle>
+<path d="M46,30 Q34,46 28,48 M54,30 Q66,46 72,48" fill="none" stroke="#eab308" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<!-- Lid Cap -->
+<div class="w-full h-11 rounded-t-2xl bg-gradient-to-r from-[#ff85a2] via-primary-container to-[#ff85a2] border-2 border-white shadow-md relative overflow-hidden flex items-center justify-center">
+<!-- Vertical Ribbon Stripe -->
+<div class="w-8 h-full bg-gradient-to-r from-secondary-container via-secondary-fixed to-secondary-container border-x border-secondary/30 shadow-inner"></div>
+<!-- Little white dots pattern -->
+<span class="absolute top-2 left-6 text-white text-[8px] opacity-70">✦</span>
+<span class="absolute top-4 right-8 text-white text-[8px] opacity-70">✦</span>
+</div>
+<!-- Lid Rim Lip -->
+<div class="w-[96%] h-3 bg-[#e11d48]/20 rounded-b-md"></div>
+</div>
+<!-- GIFT BOX MAIN CONTAINER -->
+<div class="relative w-48 h-36 rounded-b-3xl bg-gradient-to-b from-white via-[#fff0f3] to-[#ffe5ec] border-2 border-white shadow-[0_12px_24px_rgba(244,114,182,0.35)] relative overflow-hidden flex flex-col items-center justify-center z-10 -mt-2">
+<!-- Vertical Satin Ribbon -->
+<div class="absolute inset-y-0 w-8 bg-gradient-to-r from-secondary-container via-secondary-fixed to-secondary-container border-x border-secondary/30 flex items-center justify-center shadow-inner">
+<span class="text-xs text-amber-700 select-none">💖</span>
+</div>
+<!-- Horizontal Satin Ribbon -->
+<div class="absolute inset-x-0 h-7 bg-gradient-to-b from-secondary-container via-secondary-fixed to-secondary-container border-y border-secondary/30 flex items-center justify-around shadow-inner">
+<span class="text-[9px] text-amber-700">★</span>
+<span class="text-[9px] text-amber-700">★</span>
+<span class="text-[9px] text-amber-700">★</span>
+</div>
+<!-- Corner Sparkles & Cute Stickers on Box -->
+<span class="absolute bottom-3 left-4 text-xs font-doodle text-primary font-bold">forever ♡</span>
+<span class="absolute bottom-3 right-4 text-sm">🍓</span>
+</div>
+<!-- BOX PLATFORM SHADOW -->
+<div class="w-56 h-3 rounded-full bg-primary-container/25 blur-xs mt-1"></div>
+</div>
+</div>
+<!-- Interactive Status Message -->
+<div class="mt-3 font-label-md text-label-md font-bold text-primary transition-all duration-300" id="box-status">Tap the mystery box for an anniversary surprise! ✨</div>
+<!-- Interactive CTA Action Button -->
+<button class="mt-3 inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-primary text-white font-label-md font-bold shadow-md hover:shadow-lg active:scale-95 transition-all" id="gift-action-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">redeem</span>
+<span id="gift-btn-text">Unwrap Mystery Gift 🎁✨</span>
+</button>
+<!-- Snuggle Signature Footer -->
+<div class="mt-4 pt-3 border-t border-dashed border-primary-fixed/60 flex items-center justify-center gap-2 w-full">
+<span class="font-handwriting text-lg text-on-surface font-bold">Celebrating our anniversary with infinite love for you ♡</span>
+<span class="text-sm">💍💐✨</span>
+</div>
+</section>
+</div>
+<style>
+  .gift-box-wrapper {
+    height: 18rem;
+    transition: height 0.45s ease;
+  }
+
+  .gift-box-wrapper.opened {
+    height: 24rem;
+  }
+
+  .gift-box-wrapper.opened .gift-lid {
+    transform: translate(24px, -145px) rotate(25deg) scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .gift-box-wrapper.opened .gift-bouquet {
+    z-index: 40;
+    bottom: 7.5rem;
+    transform: translate(-50%, -43px) scale(1);
+  }
+
+  .gift-box-wrapper.opened > .relative.w-52 > .absolute {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes bouquet-bounce {
+    0%, 100% {
+      transform: translate(-50%, -43px) scale(1) rotate(0deg);
+    }
+
+    50% {
+      transform: translate(-50%, -47px) scale(1.03) rotate(1.5deg);
+    }
+  }
+</style>
+<audio id="love-you-audio" preload="auto" src="assets/Audio/love_you.m4a"></audio>
+<audio id="wle-audio" preload="auto" src="assets/Audio/wle.m4a"></audio>
+<audio id="lesgo-audio" preload="auto" src="assets/Audio/lesgo.m4a"></audio>
+<script>
+  (function() {
+    const confettiContainer = document.getElementById('confetti-container');
+    const colors = ['#f472b6', '#ff9fbc', '#ffc2d1', '#ffd6e0', '#fbcfe8', '#ffffff', '#ffe24c'];
+    const shapes = ['★', '♥', '●', '✦', '▲', '❀', '🎀', '🌸', '💐'];
+    
+    function createFallingParticle() {
+      if (!confettiContainer) return;
+      const el = document.createElement('div');
+      const isSymbol = Math.random() > 0.35;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      
+      el.style.position = 'absolute';
+      el.style.top = '-20px';
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.opacity = (Math.random() * 0.7 + 0.3).toString();
+      el.style.pointerEvents = 'none';
+      el.style.zIndex = '30';
+      el.style.transition = 'transform linear, opacity linear';
+      if (isSymbol) {
+        el.innerText = shapes[Math.floor(Math.random() * shapes.length)];
+        el.style.color = color;
+        el.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      } else {
+        const size = Math.random() * 6 + 4;
+        el.style.width = size + 'px';
+        el.style.height = (size * 1.5) + 'px';
+        el.style.borderRadius = '2px';
+        el.style.backgroundColor = color;
+      }
+      confettiContainer.appendChild(el);
+      const duration = Math.random() * 3500 + 3000;
+      const horizontalDrift = (Math.random() - 0.5) * 120;
+      const rotation = Math.random() * 720 - 360;
+      const animation = el.animate([
+        { transform: 'translate(0, 0) rotate(0deg)', opacity: el.style.opacity },
+        { transform: `translate(${horizontalDrift}px, 105vh) rotate(${rotation}deg)`, opacity: 0 }
+      ], {
+        duration: duration,
+        easing: 'linear'
+      });
+      animation.onfinish = () => el.remove();
+    }
+    setInterval(createFallingParticle, 450);
+
+    function burstConfetti(originX, originY) {
+      for (let i = 0; i < 45; i++) {
+        const p = document.createElement('div');
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        const isSymbol = Math.random() > 0.4;
+        p.style.position = 'fixed';
+        p.style.left = (originX || window.innerWidth / 2) + 'px';
+        p.style.top = (originY || window.innerHeight / 2) + 'px';
+        p.style.pointerEvents = 'none';
+        p.style.zIndex = '40';
+        if (isSymbol) {
+          p.innerText = shapes[Math.floor(Math.random() * shapes.length)];
+          p.style.color = color;
+          p.style.fontSize = (Math.random() * 14 + 10) + 'px';
+        } else {
+          p.style.width = (Math.random() * 8 + 4) + 'px';
+          p.style.height = (Math.random() * 8 + 4) + 'px';
+          p.style.borderRadius = '50%';
+          p.style.backgroundColor = color;
+        }
+        confettiContainer.appendChild(p);
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 190 + 80;
+        const targetX = Math.cos(angle) * velocity;
+        const targetY = Math.sin(angle) * velocity - 40;
+        const anim = p.animate([
+          { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+          { transform: `translate(${targetX}px, ${targetY}px) scale(0.3)`, opacity: 0 }
+        ], {
+          duration: 1000 + Math.random() * 450,
+          easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
+        });
+        anim.onfinish = () => p.remove();
+      }
+    }
+
+    const wishBtn = document.getElementById('wish-btn');
+    const loveYouAudio = document.getElementById('love-you-audio');
+    const wleAudio = document.getElementById('wle-audio');
+    const lesgoAudio = document.getElementById('lesgo-audio');
+    const audioEffects = [loveYouAudio, wleAudio, lesgoAudio].filter(Boolean);
+
+    function playAudio(audio) {
+      if (!audio) return;
+      audioEffects.forEach((effect) => {
+        if (effect !== audio) effect.pause();
+      });
+      audio.currentTime = 0;
+      audio.play().catch((error) => {
+        console.error(`Unable to play ${audio.id} audio.`, error);
+      });
+    }
+
+    if (wishBtn) {
+      wishBtn.addEventListener('click', () => {
+        const rect = wishBtn.getBoundingClientRect();
+        burstConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        playAudio(lesgoAudio);
+        wishBtn.classList.add('scale-105');
+        setTimeout(() => wishBtn.classList.remove('scale-105'), 250);
+      });
+    }
+
+    const sparkleTopBtn = document.getElementById('sparkle-top-btn');
+    if (sparkleTopBtn) {
+      sparkleTopBtn.addEventListener('click', () => {
+        const rect = sparkleTopBtn.getBoundingClientRect();
+        burstConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        playAudio(loveYouAudio);
+      });
+    }
+
+    const petalLayer = document.createElement('div');
+    petalLayer.setAttribute('aria-hidden', 'true');
+    petalLayer.style.position = 'fixed';
+    petalLayer.style.inset = '0';
+    petalLayer.style.pointerEvents = 'none';
+    petalLayer.style.zIndex = '35';
+    document.body.appendChild(petalLayer);
+
+    function createFloatingPetal() {
+      const petal = document.createElement('div');
+      const symbols = ['🌸', '🌷', '❀', '✿', '♡'];
+      petal.className = 'floating-petal';
+      petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.color = ['#ff8fb1', '#f9a8d4', '#ffc2d1', '#ffd6e0', '#fbcfe8'][Math.floor(Math.random() * 5)];
+      petal.style.fontSize = (Math.random() * 14 + 12) + 'px';
+      petal.style.setProperty('--x-drift', (Math.random() * 90 - 45) + 'px');
+      petal.style.setProperty('--rot', (Math.random() * 500 + 160) + 'deg');
+      petal.style.animationDuration = (Math.random() * 5 + 6) + 's';
+      petalLayer.appendChild(petal);
+      setTimeout(() => petal.remove(), 9000);
+    }
+    setInterval(createFloatingPetal, 400);
+
+    // Mystery Gift Box Interactive Logic
+    const giftBoxWrapper = document.getElementById('gift-box-wrapper');
+    const boxStatus = document.getElementById('box-status');
+    const giftActionBtn = document.getElementById('gift-action-btn');
+    const giftBtnText = document.getElementById('gift-btn-text');
+
+    let isBoxOpen = false;
+
+    function toggleMysteryGift(originEl) {
+      isBoxOpen = !isBoxOpen;
+      if (giftBoxWrapper) {
+        if (isBoxOpen) {
+          giftBoxWrapper.classList.add('opened');
+          playAudio(wleAudio);
+          if (boxStatus) {
+            boxStatus.innerText = 'Surprise, My Love! 💐 A blooming bouquet of eternal love for you! 🌸✨';
+          }
+          if (giftBtnText) {
+            giftBtnText.innerText = 'Pack Gift Box 🎀';
+          }
+          const rect = originEl ? originEl.getBoundingClientRect() : giftBoxWrapper.getBoundingClientRect();
+          burstConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+          for (let i = 0; i < 8; i++) {
+            setTimeout(() => createFloatingPetal(), i * 70);
+          }
+        } else {
+          giftBoxWrapper.classList.remove('opened');
+          if (boxStatus) {
+            boxStatus.innerText = 'Tap the mystery box! ✨';
+          }
+          if (giftBtnText) {
+            giftBtnText.innerText = 'Unwrap Mystery Gift 🎁✨';
+          }
+        }
+      }
+    }
+
+    if (giftBoxWrapper) {
+      giftBoxWrapper.addEventListener('click', (e) => {
+        toggleMysteryGift(giftBoxWrapper);
+      });
+    }
+
+    if (giftActionBtn) {
+      giftActionBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMysteryGift(giftActionBtn);
+      });
+    }
+  })();
+</script></main>
+</body></html>
